@@ -18,12 +18,15 @@ import articleRoutes from './src/routes/articleRoutes.js';
 import journalistRoutes from './src/routes/journalistRoutes.js';
 import categoryRoutes from './src/routes/categoryRoutes.js';
 import logger from './src/middleware/logger.js';
-
+import cors from 'cors';
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 app.use(logger);
+app.use(cors({
+    origin: '*', // Allow all origins
+}));
 
 app.use('/articles', articleRoutes);
 app.use('/journalists', journalistRoutes);

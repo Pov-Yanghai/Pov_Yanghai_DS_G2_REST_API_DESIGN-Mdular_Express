@@ -95,9 +95,16 @@
 import express from 'express';
 import userRoutes from './src/routes/userRoutes.js';
 import logger from './src/middleware/logger.js';
+import cors from 'cors';
+
 
 const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: '*', // Allow all origins
+}));
+
+
 app.use(logger);
 
 app.use('/users', userRoutes);
