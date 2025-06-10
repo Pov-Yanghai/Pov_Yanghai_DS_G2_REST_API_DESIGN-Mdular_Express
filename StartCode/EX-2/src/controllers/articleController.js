@@ -2,8 +2,24 @@ import { articles } from '../models/data.js';
 
 let articleList = [...articles];
 
+// export const getAllArticles = (req, res) => {
+//     res.json(articleList);
+// };
+//query both journalistId and categoryId at the same time 
 export const getAllArticles = (req, res) => {
-    res.json(articleList);
+    const { journalistId, categoryId } = req.query;
+
+    let filteredArticles = [...articleList];
+
+    if (journalistId) {
+        filteredArticles = filteredArticles.filter(article => article.journalistId == journalistId);
+    }
+
+    if (categoryId) {
+        filteredArticles = filteredArticles.filter(article => article.categoryId == categoryId);
+    }
+
+    res.json(filteredArticles);
 };
 
 export const getArticleById = (req, res) => {
